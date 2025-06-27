@@ -1,0 +1,126 @@
+adwm -- todo file.  2017-12-19
+
+General tasks:
+
+* [x] bug reports
+* [x] fix GNOME (and other DE's) compatibility
+* [x] fix issues with tagging on multihead (anything left?)
+* [x] fix focus problems
+* [x] do code cleanup
+* [x] better X11 extension handling
+
+Window resize grips:
+
+* [x] remove need for title and grips sub-windows and just draw these on
+      the frame window. (Can't do this and support 32 deep visuals.)
+* [x] add ability to have resize grips all the way around the window in
+      DTWM/MWM/TWM/CTWM/VTWM fashion
+* [ ] test resize grips all the way around
+
+Decoration styles:
+
+* [x] use ximage/xrender to draw title and resize grips
+* [x] use ximage/xrender to optimally update exposures on the frame
+* [ ] convert as many gradients as possible to use ximage/xrender
+* [x] make xrender a prerequisite
+* [x] display icons in title bar
+* [x] provide a different button pressed pixmap for each mouse button.
+* [x] handle colormaps correctly
+* [ ] provide transparency management model for instructing compositors
+* [ ] add full composite manager function to window manager
+* [x] support shaped windows
+* [ ] add shaped borders to shaped windows
+* [x] undecorate shaped windows with reduced extents by default
+* [x] used 32-deep ARGB visuals for all frame components when available
+* [ ] render client and frame elements on frame
+* [x] load themerc file in addition to stylerc file
+
+Internal layout mechanism:
+
+* [x] make layouts loadable modules
+* [ ] convert layouts to tree format and support i3/herbstluftwm, bspwm
+      and vim modes
+* [ ] apply tree format to floating windows and floating window placement.
+* [ ] use a freeform tree for mimic floating window placement
+* [ ] add ability to float from any layout without disturbing tree model
+      for tiled layout
+* [ ] add a tree per layout type to the view
+* [ ] provide ability to drag dock apps around to reorder them.
+
+User feedback:
+
+* [x] add window menu (use xde-winmenu(1))
+* [x] add root menu (use xde-menu(1))
+* [x] add window list menu (use xde-winlist(1))
+* [x] add desktop cycle display (use xde-pager(1))
+* [x] add per-desktop (per-view) background (use xde-setbg(1))
+* [x] add window cycle display (use xde-cycle(1))
+
+Session control:
+
+* [x] fixup restart behaviour
+* [ ] add session management
+* [ ] implement separate file for dock app list.
+* [ ] implement function to save dock app list.
+* [ ] do not load all resources on reload (only those that are cannot
+      be changed by the user after startup.
+
+Behaviour:
+
+* [x] showing desktop mode in fluxbox(1) is per desktop, we should do
+      the same and make showing desktop mode only apply to a view.
+
+* [x] when resizing windows frame is resizing faster than the client
+      (due to synchronization).  Change resizing behaviour to not resize
+      the frame until the client responds to the resize request.
+      (Not sure I want to do this one: current behaviour is ok.)
+
+* [x] implement lhalf and rhalf button functions.
+* [x] switch to lhalf or rhalf at screen/monitor edges (no _Ctrl_).
+* [x] defeat snap when moving with _Ctrl_ key.
+* [x] fix snapping while moving
+* [x] fix snapping while resizing
+* [ ] move window to adjacent desktop at screen/monitor edges (_Ctrl_
+      key depressed.
+* [x] implement kill behavior with _Button2_ and _Button3_ on close
+      button.
+* [ ] fix broken rollup function (maybe using XShape).
+* [x] fix broken key chains.
+* [x] fix auto-hide struts behavior
+* [x] add delay to auto-hide struts exposures
+* [x] add support for _OB_WM_{ACTION,STATE}_UNDECORATE
+* [x] always focus last selected window per view when possible
+* [x] fix resizing from maximized
+* [x] support WM_ICON_SIZE
+* [x] handle _NET_WM_WINDOW_OPACITY
+* [x] support WM_COLORMAP_{WINDOWS,NOTIFY}
+* [ ] get keyboard-based move working
+* [ ] get keyboard-based resize working
+* [ ] support _NET_WM_FULL_PLACEMENT
+* [ ] support _NET_WM_OPAQUE_REGION
+* [ ] support _NET_WM_BYPASS_COMPOSITOR
+
+Configuration:
+
+* [ ] Provide external mechanism for setting configuration items.
+      Possibly use manager selection: do not set property on the
+      conversion window when getting the configuration item; set
+      the property on the conversion window to set the
+      configuration item.
+      Another possibility is to use RESOURCE_MANAGER.
+* [ ] Provide external mechanism for invoking keyboard actions:
+      at least those that are not supported by EWMH and other
+      extensions.
+      Possibly use client message with action id and up to 4
+      parameters.
+* [ ] Provide external mechanism for redefining key bindings.
+* [x] Make mouse button action bindings configurable.
+* [ ] Have default key bindings invoke xde-preferred for default
+      terminal, browser, file manager and editor.
+* [ ] Consider using xde-preferred for screenshot, brighness and
+      backlight controls, and audio controls.  Either have defined
+      defaults, or use smart scripts (debian way) to find something
+      usable.
+
+
+// vim: set ft=asciidoc tw=72 nocin nosi fo+=tcqlorn spell:
