@@ -1,0 +1,53 @@
+from flask import Flask, request, jsonify
+import requests
+import os
+
+app = Flask(__name__)
+
+# IBM watsonx.ai endpoint and credentials (placeholder)
+WATSONX_API_KEY = os.getenv("WATSONX_API_KEY")
+WATSONX_PROJECT_ID = os.getenv("WATSONX_PROJECT_ID")
+GRANITE_MODEL = "granite-13b-chat"  # Example model
+
+def query_granite(prompt):
+    """
+    Simulate querying IBM Granite model via watsonx.ai API.
+    Replace this with actual call when you have access.
+    """
+    headers = {
+        "Authorization": f"Bearer {WATSONX_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "model_id": GRANITE_MODEL,
+        "project_id": WATSONX_PROJECT_ID,
+        "input": prompt,
+        "parameters": {
+            "temperature": 0.7,
+            "max_tokens": 256
+        }
+    }
+    # Simulate response (replace with real API call using requests.post)
+    return {
+        "output": f"Simulated response to: '{prompt}'\nFor real integration, connect to watsonx.ai endpoint."
+    }
+
+@app.route("/assistant", methods=["POST"])
+def assistant():
+    data = request.json
+    user_input = data.get("query", "")
+    city_context = data.get("context", "You are a smart city sustainability assistant.")
+    
+    prompt = f"{city_context}\nUser: {user_input}\nAssistant:"
+    response = query_granite(prompt)
+    
+    return jsonify({
+        "response": response["output"]
+    })
+
+@app.route("/", methods=["GET"])
+def home():
+    return "Sustainable Smart City Assistant is running."
+
+if __name__ == "__main__":
+    app.run(debug=True)
